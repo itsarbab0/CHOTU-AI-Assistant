@@ -7,11 +7,11 @@ def initializing_Voices():
     engine = pyttsx3.init("sapi5")
     voice = engine.getProperty("voices")
     # We have two voices in our system
-    engine.setProperty("voice", voice[1].id)
+    engine.setProperty("voice", voice[0].id)
     rate = engine.getProperty("rate")
     engine.setProperty("rate", rate - 30) # Speed of voice i.e. hit and trial 
     vol = engine.getProperty("volume")
-    engine.setProperty("v olume", vol + 0.25) # Volume of voice i.e. hit and trial
+    engine.setProperty("volume", vol + 0.25) # Volume of voice i.e. hit and trial
     return engine
 
 ### the Speaking Phase
