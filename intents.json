@@ -19,7 +19,9 @@
             "responses": [
                 "Hello",
                 "Good to see you again",
-                "Hi there, how can I help?"
+                "Hi there, how can I help?",
+                "Waalaikum Assalam!"
+
             ],
             "context": [
                 ""
@@ -155,7 +157,7 @@
                 "who programmed you"
             ],
             "responses": [
-                "I was made by Arbab Kareem and Mania Shakeel."
+                "I was made by Arbab Kareem."
             ]
         },
         {

@@ -211,6 +211,12 @@ def closeApp(command):
     elif "microsoft edge" in command:
         speak("Closing Microsoft Edge")
         os.system("taskkill /f /im msedge.exe")
+    elif "excel" in command or "ms excel" in command:
+        speak("Closing Microsoft Excel")
+        os.system("taskkill /f /im EXCEL.EXE")
+    elif "word" in command or "ms word" in command:
+        speak("Closing Microsoft Word")
+        os.system("taskkill /f /im WINWORD.EXE")
 
 if __name__ == "__main__":
     speak("Whose there?")
@@ -242,9 +248,10 @@ if __name__ == "__main__":
         elif ("volume mute" in query) or ("mute the volume" in query):
             pyautogui.press("volumemute")
             speak("Volume Muted")
-        elif ("open calculator" in query) or ("open ms word" in query) or ("open ms excel" in query)   or ("open notepad" in query)  or ("open paint" in query)  or ("open brave" in query)  or ("open vs code" in query)  or ("open chrome" in query) or ("open this pc" in query) or ("open control panel" in query) or ("open settings" in query) or ("open microsoft edge" in query) ):
+
+        elif ("open calculator" in query) or ("open ms word" in query) or ("open ms excel" in query)   or ("open notepad" in query)  or ("open paint" in query)  or ("open brave" in query)  or ("open vs code" in query)  or ("open chrome" in query) or ("open this pc" in query) or ("open control panel" in query) or ("open settings" in query) or ("open microsoft edge" in query):
             openApp(query)
-        elif ("close calculator" in query) or ("close ms word" in query)  or ("close ms excel" in query) or ("close notepad" in query) or ("close paint" in query) or ("close brave" in query) or ("close vs code" in query) or ("close chrome" in query) or ("close this pc" in query) or ("close control panel" in query) or ("close settings" in query) or ("close microsoft edge" in query) or :
+        elif ("close calculator" in query) or ("close ms word" in query)  or ("close ms excel" in query) or ("close notepad" in query) or ("close paint" in query) or ("close brave" in query) or ("close vs code" in query) or ("close chrome" in query) or ("close this pc" in query) or ("close control panel" in query) or ("close settings" in query) or ("close microsoft edge" in query):
             closeApp(query)
 
         
