@@ -137,53 +137,94 @@ def mySchedule():
     if day in week_days.keys():
         speak(week_days[day])
 
+import os
+
 def openApp(command):
     if "calculator" in command:
-        speak("Openiing Calculator")
-        os.system("calc")
+        speak("Opening Calculator")
+        os.startfile("calc")
     elif "notepad" in command:
         speak("Opening Notepad")
-        os.system("notepad")
+        os.startfile("notepad")
     elif "paint" in command:
         speak("Opening Paint")
-        os.system("mspaint")
+        os.startfile("mspaint")
     elif "brave" in command:
         speak("Opening Brave Browser")
-        os.system("brave")
+        os.startfile(r'"C:\Users\karee\AppData\Local\BraveSoftware\Brave-Browser\Application\brave.exe"')
     elif "vs code" in command:
         speak("Opening Visual Studio Code")
-        os.system("code")
+        os.startfile("code")
     elif "chrome" in command:
         speak("Opening Chrome Browser")
-        os.system("chrome")
+        os.startfile(r'"C:\Program Files\Google\Chrome\Application\chrome.exe"')
+         
     elif "pc" in command:
         speak("Opening This PC")
-        os.system("explorer")
+        os.startfile("explorer")
     elif "control panel" in command:
         speak("Opening Control Panel")
-        os.system("control")
+        os.startfile("control")
     elif "settings" in command:
         speak("Opening Settings")
-        os.system("ms-settings")
+        os.system("start ms-settings:")
     elif "microsoft edge" in command:
         speak("Opening Microsoft Edge")
-        os.system("msedge")
+        os.startfile(r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
+    elif "excel" in command or "ms excel" in command:
+        speak("Opening Microsoft Excel")
+        os.startfile(r"C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE")
+    elif "word" in command or "ms word" in command:
+        speak("Opening Microsoft Word")
+        os.startfile(r"C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE")
     else:
         speak("Sorry, I am not able to open this Application")
 
+def closeApp(command):
+    if "calculator" in command:
+        speak("Closing Calculator")
+        os.system("taskkill /f /im calc.exe")
+    elif "notepad" in command:
+        speak("Closing Notepad")
+        os.system("taskkill /f /im notepad.exe")
+    elif "paint" in command:
+        speak("Closing Paint")
+        os.system("taskkill /f /im mspaint.exe")
+    elif "brave" in command:
+        speak("Closing Brave Browser")
+        os.system("taskkill /f /im brave.exe")
+    elif "vs code" in command:
+        speak("Closing Visual Studio Code")
+        os.system("taskkill /f /im code.exe")
+    elif "chrome" in command:
+        speak("Closing Chrome Browser")
+        os.system("taskkill /f /im chrome.exe")
+    elif "pc" in command:
+        speak("Closing This PC")
+        os.system("taskkill /f /im explorer.exe")
+    elif "control panel" in command:
+        speak("Closing Control Panel")
+        os.system("taskkill /f /im control.exe")
+    elif "settings" in command:
+        speak("Closing Settings")
+        os.system("taskkill /f /im systemsettings.exe")
+    elif "microsoft edge" in command:
+        speak("Closing Microsoft Edge")
+        os.system("taskkill /f /im msedge.exe")
+
 if __name__ == "__main__":
     speak("Whose there?")
-    name = command()
-    while name == "None":
-        speak("Can you please tell me your name again")
-        name = command()
+    name = "Mania"
+    # while name == "None":
+    #     speak("Can you please tell me your name again")
+    #     name = command()
     greetMe(name)
     name = name.lower()
     while True:
         
         query = command().lower()
         if "exit" in query:
-            speak("Good Bye My Highness, Its pleasure to serve you")
+            speak("Good Bye My Lord, Its pleasure to serve you")
             sys.exit()
         if ("youtube" in query) or ("whatsapp" in query) or ("google" in query) or ("instagram" in query) or ("facebook" in query):
             social_media(query)
@@ -201,8 +242,10 @@ if __name__ == "__main__":
         elif ("volume mute" in query) or ("mute the volume" in query):
             pyautogui.press("volumemute")
             speak("Volume Muted")
-        elif ("open calculator" in query) or ("calculator" in query) or ("open notepad" in query) or ("notepade" in query) or ("open paint" in query) or ("paint" in query) or ("open brave" in query) or ("brave browser" in query) or ("open vs code" in query) or ("open visual studio code" in query) or ("open code" in query) or ("open chrome" in query) or ("chrome browser" in query) or ("open pc" in query) or ("this pc" in query) or ("open control panel" in query) or ("control panel" in query) or ("open settings" in query) or ("settings" in query) or ("open microsoft edge" in query) or ("microsoft edge" in query):
+        elif ("open calculator" in query) or ("open word" in query) or ("open ms word" in query) or ("open ms excel" in query) or ("open excel" in query) or ("calculator" in query) or ("open notepad" in query)  or ("open paint" in query)  or ("open brave" in query)  or ("open vs code" in query) or ("open visual studio code" in query)  or ("open chrome" in query) or ("chrome browser" in query) or ("open pc" in query) or ("this pc" in query) or ("open control panel" in query) or ("control panel" in query) or ("open settings" in query) or ("open microsoft edge" in query) or ("open msedge" in query):
             openApp(query)
+        elif ("close calculator" in query) or ("close ms word" in query) or ("close word" in query) or ("close ms excel" in query) or ("close excel" in query) or ("close notepad" in query) or ("close paint" in query) or ("close brave" in query) or ("close vs code" in query) or ("close chrome" in query) or ("close this pc" in query) or ("close pc" in query) or ("close control panel" in query) or ("close settings" in query) or ("close microsoft edge" in query) or ("close msedge" in query):
+            closeApp(query)
 
         
 
