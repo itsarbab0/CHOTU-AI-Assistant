@@ -1,6 +1,9 @@
 import datetime
+import os
+import sys
 import time
 import webbrowser
+import pyautogui
 import pyttsx3
 import speech_recognition as sr
 
@@ -71,19 +74,19 @@ def get_Day():
     
 
 
-def greetMe():
+def greetMe(name):
     hour = int(datetime.datetime.now().hour)
     ti = time.strftime("%I:%M:%p")
     day = get_Day()
 
     if (hour >= 0) and (hour < 12) and ("AM" in ti):
-        speak(f"Good Morning Mania, Chotu here its {day} and the time is {ti}")
+        speak(f"Good Morning {name}, Chotu here its {day} and the time is {ti}")
     elif (hour >= 12 and hour < 16) and ("PM" in ti):
-        speak(f"Good Afternoon Mania, Chotu here its {day} and the time is {ti}")
+        speak(f"Good Afternoon {name}, Chotu here its {day} and the time is {ti}")
     elif (hour >= 16 and hour < 20) and ("PM" in ti):
-        speak(f"Good Evening Mania, Chotu here its {day} and the time is {ti}")
+        speak(f"Good Evening {name}, Chotu here its {day} and the time is {ti}")
     else:
-        speak(f"Good Night Mania, Chotu here its {day} and the time is {ti}")
+        speak(f"Good Night {name}, Chotu here its {day} and the time is {ti}")
 
 def social_media(command):
     if "youtube" in command:
@@ -104,19 +107,103 @@ def social_media(command):
     else:
         speak("Sorry, I am not able to open this Social Media")
 
+def maniaSchedule():
+    day = get_Day()
+    speak(f"My Highness Mania, Your University Schedule for {day} is as follows:")
+    week_days = {
+        "Monday": "My Highness, You have three classes today. First one is Probability and Statistics at 9:00 AM to 10:20 AM and the second one is Operating System at 12:30 AM to 1:20 PM and the third one is Technical and Business writing at 1:30 PM to 2:20 PM",
+        "Tuesday": "My Highness, You have two class and one Lab today. First one is Organizational Behavior at 9:30 AM to 10:20 AM and the Second one is Lab of Database at 10:30 AM to 12:20 PM and the third one is Database Class at 12:30 PM to 1:20 PM",
+        "Wednesday": "My Highness, You have three classes today. First one is Probability and Statistics at 9:00 AM to 10:20 AM and the second one is Operating System at 12:30 AM to 1:20 PM and the third one is Technical and Business writing at 1:30 PM to 2:20 PM",
+        "Thursday": "My Highness, You have two class and one Lab today. First one is Organizational Behavior at 9:30 AM to 10:20 AM and the Second one is Lab of Database at 10:30 AM to 12:20 PM and the third one is Database Class at 12:30 PM to 1:20 PM",
+        "Friday": "My Highness, Today is your off day. Enjoy your day",
+        "Saturday": "My Highness, Today is your off day. Enjoy your day",
+        "Sunday": "My Highness, Today is your off day. Enjoy your day"  
+    }
+    if day in week_days.keys():
+        speak(week_days[day])
+
+def mySchedule():
+    day = get_Day()
+    speak(f"My Liege Arbab, Your University Schedule for {day} is as follows:")
+    week_days ={
+        "Monday": "My Liege, You have two classes today. First one is Artificial Intelegence at 11:30 AM to 1:00 PM and the second one is Compiler Construction at 1:00 PM to 2:30 PM",
+        "Tuesday": "My Liege, You have three classes today. First one is Cyber Security at 9:00 AM to 10:30 AM and the second one is Software Engineering at 10:00 AM to 11:30 PM and the third one is Parallel Distributed Computing at 1:00 PM to 2:30 PM",
+        "Wednesday": "My Liege, You have two classes today. First one is Artificial Intelegence at 11:30 AM to 1:00 PM and the second one is Compiler Construction at 1:00 PM to 2:30 PM",
+        "Thursday": "My Liege, You have three classes today. First one is Cyber Security at 9:00 AM to 10:30 AM and the second one is Software Engineering at 10:00 AM to 11:30 PM and the third one is Parallel Distributed Computing at 1:00 PM to 2:30 PM",
+        "Friday": "My Liege, You have only a LAB of Artificial Intelegence today at 8:30 AM to 11:30 AM",
+        "Saturday": "My Liege, Today is your off day. Enjoy your day",
+        "Sunday": "My Liege, Today is your off day. Enjoy your day"  
+    }
+    if day in week_days.keys():
+        speak(week_days[day])
+
+def openApp(command):
+    if "calculator" in command:
+        speak("Openiing Calculator")
+        os.system("calc")
+    elif "notepad" in command:
+        speak("Opening Notepad")
+        os.system("notepad")
+    elif "paint" in command:
+        speak("Opening Paint")
+        os.system("mspaint")
+    elif "brave" in command:
+        speak("Opening Brave Browser")
+        os.system("brave")
+    elif "vs code" in command:
+        speak("Opening Visual Studio Code")
+        os.system("code")
+    elif "chrome" in command:
+        speak("Opening Chrome Browser")
+        os.system("chrome")
+    elif "pc" in command:
+        speak("Opening This PC")
+        os.system("explorer")
+    elif "control panel" in command:
+        speak("Opening Control Panel")
+        os.system("control")
+    elif "settings" in command:
+        speak("Opening Settings")
+        os.system("ms-settings")
+    elif "microsoft edge" in command:
+        speak("Opening Microsoft Edge")
+        os.system("msedge")
+    else:
+        speak("Sorry, I am not able to open this Application")
 
 if __name__ == "__main__":
-    greetMe()
+    speak("Whose there?")
+    name = command()
+    while name == "None":
+        speak("Can you please tell me your name again")
+        name = command()
+    greetMe(name)
+    name = name.lower()
     while True:
-        # query = input("Enter your Command: ").lower()
+        
         query = command().lower()
         if "exit" in query:
-            break
+            speak("Good Bye My Highness, Its pleasure to serve you")
+            sys.exit()
         if ("youtube" in query) or ("whatsapp" in query) or ("google" in query) or ("instagram" in query) or ("facebook" in query):
             social_media(query)
-             
-    #     query = command().lower()
-    #     speak(query)
-    #     if "exit" in query:
-    #         break
+        elif ("time table" in query) or ("schedule" in query):
+            if name == "arbab":
+                mySchedule()
+            elif name == "manya":
+                maniaSchedule()
+        elif ("volume up" in query) or ("increase the volume" in query) or ("increase volume" in query):
+            pyautogui.press("volumeup")
+            speak("Volume Increased")
+        elif ("volume down" in query) or ("decrease the volume" in query) or ("decrease volume" in query):
+            pyautogui.press("volumedown")
+            speak("Volume Decreased")
+        elif ("volume mute" in query) or ("mute the volume" in query):
+            pyautogui.press("volumemute")
+            speak("Volume Muted")
+        elif ("open calculator" in query) or ("calculator" in query) or ("open notepad" in query) or ("notepade" in query) or ("open paint" in query) or ("paint" in query) or ("open brave" in query) or ("brave browser" in query) or ("open vs code" in query) or ("open visual studio code" in query) or ("open code" in query) or ("open chrome" in query) or ("chrome browser" in query) or ("open pc" in query) or ("this pc" in query) or ("open control panel" in query) or ("control panel" in query) or ("open settings" in query) or ("settings" in query) or ("open microsoft edge" in query) or ("microsoft edge" in query):
+            openApp(query)
+
+        
+
 
