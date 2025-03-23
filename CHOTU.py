@@ -214,10 +214,10 @@ def closeApp(command):
 
 if __name__ == "__main__":
     speak("Whose there?")
-    name = "Mania"
-    # while name == "None":
-    #     speak("Can you please tell me your name again")
-    #     name = command()
+    name = command()
+    while name == "None":
+        speak("Can you please tell me your name again")
+        name = command()
     greetMe(name)
     name = name.lower()
     while True:
@@ -231,7 +231,7 @@ if __name__ == "__main__":
         elif ("time table" in query) or ("schedule" in query):
             if name == "arbab":
                 mySchedule()
-            elif name == "manya":
+            elif name == "manya" or name == "mania":
                 maniaSchedule()
         elif ("volume up" in query) or ("increase the volume" in query) or ("increase volume" in query):
             pyautogui.press("volumeup")
