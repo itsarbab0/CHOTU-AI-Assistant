@@ -218,9 +218,21 @@ def closeApp(command):
         speak("Closing Microsoft Word")
         os.system("taskkill /f /im WINWORD.EXE")
 
+def extractName(command):
+    name = "None"
+    if "arbab" in command:
+        name = "arbab"
+    elif "manya" in command or "mania" in command:
+        name = "manya"
+    elif "none" in command:
+        name = "None"
+    else:
+        speak("Sorry, I am not able to recognize your name")
+    return name
+
 if __name__ == "__main__":
-    speak("Whose there?")
-    name = command()
+    speak("Can you Please tell me Whose there?")
+    name = extractName(command())
     while name == "None":
         speak("Can you please tell me your name again")
         name = command()
@@ -230,7 +242,7 @@ if __name__ == "__main__":
         
         query = command().lower()
         if "exit" in query:
-            speak("Good Bye My Highness, Its pleasure to serve you")
+            speak("Good Bye My Boss, Its pleasure to serve you")
             sys.exit()
         if ("youtube" in query) or ("whatsapp" in query) or ("google" in query) or ("instagram" in query) or ("facebook" in query):
             social_media(query)
